@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quidon.gamejava.Scene2_Controller">
+   <children>
+      <ImageView fitHeight="610.0" fitWidth="618.0" layoutY="-210.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ball" fitHeight="22.0" fitWidth="20.0" layoutX="292.0" layoutY="-50.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+         <image>
+            <Image url="@images/atack_ball.png" />
+         </image>
+      </ImageView>
+      <Line endX="509.0" layoutX="101.0" layoutY="400.0" startX="-100.0" strokeWidth="15.0" />
+      <Label fx:id="score" layoutX="465.0" layoutY="14.0" text="0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="512.0" layoutY="14.0" text="/ 10">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="125.0" fitWidth="82.0" layoutX="518.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/cloud.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="163.0" fitWidth="215.0" layoutX="300.0" layoutY="1.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/cloud.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="155.0" fitWidth="222.0" layoutX="64.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/cloud.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="125.0" fitWidth="82.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/cloud.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="airball" fitHeight="77.0" fitWidth="41.0" layoutX="399.0" layoutY="-50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/balln.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="character" fitHeight="115.0" fitWidth="121.0" layoutX="235.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/fire_normal_state.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
