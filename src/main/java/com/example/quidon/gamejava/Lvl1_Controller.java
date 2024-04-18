@@ -1,6 +1,7 @@
 package com.example.quidon.gamejava;
 
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,7 +49,6 @@ public class Lvl1_Controller {
     private int bossImageId = 0;
     private static int previousNumber = 0;
     private int bossHP = 10;
-    private int PlayerHP = 3;
 
 
     //           Image          //
@@ -57,7 +57,7 @@ public class Lvl1_Controller {
 
 
     //          float           //
-    private final float ball_speed = 3.5f;
+    private final float ball_speed = 5.0f;
     private float speed = 1.6f;
     private final float fall_speed = 2.0f;
 
@@ -191,7 +191,7 @@ public class Lvl1_Controller {
                 if (right && character.getLayoutX() < 220) {
                     character.setLayoutX(character.getLayoutX() + speed);
                 }
-                if (left && character.getLayoutX() > 1) {
+                if (left && character.getLayoutX() > -17) {
                     character.setLayoutX(character.getLayoutX() - speed);
                 }
 
@@ -400,18 +400,22 @@ public class Lvl1_Controller {
 
         switch (num) {
             case 1:
+                Platform.runLater(() -> {
                 barrier.setLayoutY(227);
                 playTp();
+                });
                 break;
-
             case 2:
-                barrier.setLayoutY(130);
-                playTp();
+                Platform.runLater(() -> {
+                    barrier.setLayoutY(130);
+                    playTp();
+                });
                 break;
-
             case 3:
-                barrier.setLayoutY(25);
-                playTp();
+                Platform.runLater(() -> {
+                    barrier.setLayoutY(25);
+                    playTp();
+                });
                 break;
         }
         }

@@ -35,7 +35,7 @@ public class Scene2_Controller {
     private Label score;
 
 
-    private final float ball_speed = 4.0f;
+    private final float ball_speed = 4.5f;
     private float speed = 2.0f;
     private final float fall_speed = 3.0f;
 
@@ -74,10 +74,10 @@ public class Scene2_Controller {
                     character.setLayoutY(character.getLayoutY() + fall_speed);
                 }
 
-                if (right && character.getLayoutX() < 400) {
+                if (right && character.getLayoutX() < 510) {
                     character.setLayoutX(character.getLayoutX() + speed);
                 }
-                if (left && character.getLayoutX() > 1) {
+                if (left && character.getLayoutX() > -22) {
                     character.setLayoutX(character.getLayoutX() - speed);
                 }
 
@@ -86,7 +86,7 @@ public class Scene2_Controller {
                     mediaPlayer.stop();
                     SFX.stop();
 
-                    goToBlackScene();
+                    goToLevel3();
 
                 }
             }
@@ -216,44 +216,64 @@ public class Scene2_Controller {
     private void teleport(int num) {
         switch (num) {
             case 1:
-                airball.setLayoutX(399);
-                airball.setLayoutY(100);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(399);
+                    airball.setLayoutY(100);
+                });
                 break;
             case 2:
-                airball.setLayoutX(101);
-                airball.setLayoutY(244);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(101);
+                    airball.setLayoutY(244);
+                });
                 break;
             case 3:
-                airball.setLayoutX(539);
-                airball.setLayoutY(302);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(539);
+                    airball.setLayoutY(302);
+                });
                 break;
             case 4:
-                airball.setLayoutX(101);
-                airball.setLayoutY(47);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(101);
+                    airball.setLayoutY(47);
+                });
                 break;
             case 5:
-                airball.setLayoutX(292);
-                airball.setLayoutY(236);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(292);
+                    airball.setLayoutY(236);
+                });
                 break;
             case 6:
-                airball.setLayoutX(382);
-                airball.setLayoutY(26);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(382);
+                    airball.setLayoutY(26);
+                });
                 break;
             case 7:
-                airball.setLayoutX(272);
-                airball.setLayoutY(226);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(272);
+                    airball.setLayoutY(226);
+                });
                 break;
             case 8:
-                airball.setLayoutX(498);
-                airball.setLayoutY(67);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(498);
+                    airball.setLayoutY(67);
+                });
                 break;
             case 9:
-                airball.setLayoutX(82);
-                airball.setLayoutY(130);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(82);
+                    airball.setLayoutY(130);
+                });
                 break;
             case 10:
-                airball.setLayoutX(555);
-                airball.setLayoutY(170);
+                Platform.runLater(() -> {
+                    airball.setLayoutX(555);
+                    airball.setLayoutY(170);
+                });
                 break;
         }
     }
@@ -282,11 +302,11 @@ public class Scene2_Controller {
         score.setText(String.valueOf(currentScore));
     }
 
-    private void goToBlackScene() {
+    private void goToLevel3() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("black.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene3.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 600, 400);
 
             Stage stage = (Stage) character.getScene().getWindow();
             stage.setScene(scene);

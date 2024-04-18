@@ -37,6 +37,7 @@ public class HelloController {
             window.show();
         } else if (event.getSource() == button2) {
             Platform.exit();
+            System.exit(0);
         }
     }
 
