@@ -57,9 +57,10 @@ public class Lvl1_Controller {
 
 
     //          float           //
-    private final float ball_speed = 5.0f;
-    private float speed = 1.6f;
-    private final float fall_speed = 2.0f;
+    private final float ball_speed = 12.0f;
+    private float speed = 3.84f;
+    private final float fall_speed = 4.8f;
+
 
 
     //          boolean       //

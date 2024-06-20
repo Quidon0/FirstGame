@@ -35,9 +35,10 @@ public class Scene2_Controller {
     private Label score;
 
 
-    private final float ball_speed = 4.5f;
-    private float speed = 2.0f;
-    private final float fall_speed = 3.0f;
+    private final float ball_speed = 10.8f;
+    private float speed = 4.8f;
+    private final float fall_speed = 7.2f;
+
 
 
     private boolean isJump = false;
