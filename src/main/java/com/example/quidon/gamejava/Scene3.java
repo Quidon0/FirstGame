@@ -59,12 +59,12 @@ public class Scene3 {
     private Text you_dead;
 
 
-    private final float lazer_speed = 3.0f;
-    private final float speed = 0.2f;
-    private final float speed_LR = 0.5f;
-    private final float speed_down = 0.15f;
-    private final float enemy_speed = 0.4f;
-    private final float enemy_speed_die = 0.4f;
+    private final float lazer_speed = 7.2f;
+    private final float speed = 0.48f;
+    private final float speed_LR = 1.2f;
+    private final float speed_down = 0.36f;
+    private final float enemy_speed = 0.96f;
+    private final float enemy_speed_die = 0.96f;
 
 
 
@@ -126,7 +126,6 @@ public class Scene3 {
 
     @FXML
     private ImageView bg6;
-
 
 
     @FXML
@@ -287,47 +286,45 @@ public class Scene3 {
     }
 
 
-
-
     //              All Animations          //
     AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
 
-                if (right && character_lvl3.getLayoutX() < 498) {
-                    character_lvl3.setLayoutX(character_lvl3.getLayoutX() + speed_LR);
+            if (right && character_lvl3.getLayoutX() < 498) {
+                character_lvl3.setLayoutX(character_lvl3.getLayoutX() + speed_LR);
 
-                    if (character_lvl3.getLayoutX() > 118 && character_lvl3.getLayoutX() < 381) {
-                        screen.setLayoutX(screen.getLayoutX() + speed_LR);
-                    }
+                if (character_lvl3.getLayoutX() > 118 && character_lvl3.getLayoutX() < 381) {
+                    screen.setLayoutX(screen.getLayoutX() + speed_LR);
+                }
+            }
+
+            if (left && character_lvl3.getLayoutX() > 3) {
+                character_lvl3.setLayoutX(character_lvl3.getLayoutX() - speed_LR);
+
+                if (character_lvl3.getLayoutX() > 118 && character_lvl3.getLayoutX() < 381) {
+                    screen.setLayoutX(screen.getLayoutX() - speed_LR);
                 }
 
-                if (left && character_lvl3.getLayoutX() > 3) {
-                    character_lvl3.setLayoutX(character_lvl3.getLayoutX() - speed_LR);
+            }
+            if (up && character_lvl3.getLayoutY() > 110) {
+                character_lvl3.setLayoutY(character_lvl3.getLayoutY() - speed);
+                screen.setLayoutY(screen.getLayoutY() - speed);
+            }
+            if (down && character_lvl3.getLayoutY() < 816) {
+                character_lvl3.setLayoutY(character_lvl3.getLayoutY() + speed_down);
+                screen.setLayoutY(screen.getLayoutY() + speed_down);
+            }
 
-                    if (character_lvl3.getLayoutX() > 118 && character_lvl3.getLayoutX() < 381) {
-                        screen.setLayoutX(screen.getLayoutX() - speed_LR);
-                    }
-
-                }
-                if (up && character_lvl3.getLayoutY() > 110) {
-                    character_lvl3.setLayoutY(character_lvl3.getLayoutY() - speed);
-                    screen.setLayoutY(screen.getLayoutY() - speed);
-                }
-                if (down && character_lvl3.getLayoutY() < 816) {
-                    character_lvl3.setLayoutY(character_lvl3.getLayoutY() + speed_down);
-                    screen.setLayoutY(screen.getLayoutY() + speed_down);
-                }
-
-                if (character_lvl3.getLayoutY() <= 120) {
-                    Win();
-                }
+            if (character_lvl3.getLayoutY() <= 120) {
+                Win();
+            }
 
         }
     };
 
 
-                //                  Camera                  //
+    //                  Camera                  //
     AnimationTimer camera_timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
@@ -380,8 +377,6 @@ public class Scene3 {
     };
 
 
-
-
     //            Enemies Group 1         //
     AnimationTimer enemies1_timer = new AnimationTimer() {
         @Override
@@ -427,7 +422,6 @@ public class Scene3 {
                                 enemy.setImage(new Image(getClass().getResourceAsStream("/com/example/quidon/gamejava/images/enemy_bomb.png")));
                             }));
                             timeline.play();
-
 
 
                         } else if (crabGroup.contains(enemy)) {
@@ -499,7 +493,7 @@ public class Scene3 {
                             removeTimeline.play();
 
 
-                    } else if (bombGroup.contains(enemy)) {
+                        } else if (bombGroup.contains(enemy)) {
                             enemy.setImage(new Image(getClass().getResourceAsStream("/com/example/quidon/gamejava/gif/boom.gif")));
 
                             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(650), evt -> {
@@ -627,9 +621,6 @@ public class Scene3 {
     };
 
 
-
-
-
     //                      Lose                        //
     AnimationTimer Lose_Timer = new AnimationTimer() {
         private long startTime;
@@ -690,10 +681,6 @@ public class Scene3 {
 
         }
     };
-
-
-
-
 
 
     @FXML
@@ -766,7 +753,6 @@ public class Scene3 {
         continue_game.setOnMouseExited(e -> continue_game.setEffect(null));
 
 
-
         //              KEYS            //
         character_lvl3.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -824,7 +810,6 @@ public class Scene3 {
         });
         character_lvl3.setFocusTraversable(true);
     }
-
 
 
     //          Methods         //
@@ -981,7 +966,6 @@ public class Scene3 {
             }
         });
     }
-
 
 
 }
