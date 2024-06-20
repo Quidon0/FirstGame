@@ -8,7 +8,6 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,8 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -47,11 +44,6 @@ public class Scene2_Controller {
     private boolean attacking = false;
     private boolean win = false;
 
-
-    private MediaPlayer mediaPlayer;
-    private MediaPlayer SFX;
-    private final String soundFile = "/com/example/quidon/gamejava/sound/overworld.mp3";
-    private final String sfxFile = "/com/example/quidon/gamejava/sound/bounceSFX.mp3";
 
 
     private final Image jumpImage = new Image(getClass().getResource("/com/example/quidon/gamejava/images/jump_state.png").toExternalForm());
@@ -84,8 +76,6 @@ public class Scene2_Controller {
 
                 if (currentScore >= 10) {
                     win = true;
-                    mediaPlayer.stop();
-                    SFX.stop();
 
                     goToLevel3();
 
@@ -115,11 +105,6 @@ public class Scene2_Controller {
                     updateScoreLabel();
                     airball.setLayoutY(-150);
 
-                    Media sfx = new Media(getClass().getResource(sfxFile).toExternalForm());
-                    SFX = new MediaPlayer(sfx);
-                    SFX.setVolume(0.9);
-
-                    playSFX();
                 }
             }
         }
@@ -127,11 +112,6 @@ public class Scene2_Controller {
 
     @FXML
     void initialize() {
-        Media sound = new Media(getClass().getResource(soundFile).toExternalForm());
-        mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.5);
-        playSound();
-
 
         timer.start();
         balltime.start();
@@ -198,20 +178,6 @@ public class Scene2_Controller {
             currentImageIndex = (currentImageIndex + 1) % characterImages.length;
             character.setImage(characterImages[currentImageIndex]);
         }
-    }
-
-    private void playSound() {
-        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-            mediaPlayer.stop();
-        }
-        mediaPlayer.play();
-    }
-
-    private void playSFX() {
-        if (SFX.getStatus() == MediaPlayer.Status.PLAYING) {
-            SFX.stop();
-        }
-        SFX.play();
     }
 
     private void teleport(int num) {

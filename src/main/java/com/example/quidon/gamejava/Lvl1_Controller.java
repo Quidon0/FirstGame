@@ -12,8 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -37,11 +35,6 @@ public class Lvl1_Controller {
     @FXML
     private Label scoreLabel;
 
-
-    //              sound           //
-    private final String soundFile = "/com/example/quidon/gamejava/sound/musicSc1.mp3";
-    private final String boss_get_damage = "/com/example/quidon/gamejava/sound/damage.mp3";
-    private final String barrier_teleport = "/com/example/quidon/gamejava/sound/teleport.mp3";
 
 
     //              int             //
@@ -208,15 +201,6 @@ public class Lvl1_Controller {
                         ball.setLayoutX(250);
                         ball.setLayoutY(-50);
 
-                        if (mediaPlayerBoss != null) {
-                            mediaPlayerBoss.stop();
-                            mediaPlayerBoss.dispose();
-                        }
-
-                        Media sound = new Media(getClass().getResource(boss_get_damage).toExternalForm());
-                        mediaPlayerBoss = new MediaPlayer(sound);
-
-                        playBossDamageSound();
                         bossHP = bossHP - 1;
                         updateScoreLabel();
                         attacking = false;
@@ -227,28 +211,14 @@ public class Lvl1_Controller {
                     }
                 }
             } else {
-                stopAllSounds();
             }
 
         }
     };
 
 
-
-    private MediaPlayer mediaPlayer;
-    private MediaPlayer mediaPlayerBoss;
-    private MediaPlayer mediaPlayerTp;
-
-
     @FXML
     void initialize() {
-
-            //                                 Music                                      //
-            Media sound = new Media(getClass().getResource(soundFile).toExternalForm());
-            mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setVolume(0.5);
-
-            playSound();
 
 
             //                                  Animation                                 //
@@ -348,28 +318,6 @@ public class Lvl1_Controller {
 
 
     //                         Functions                       //
-    private void playSound() {
-        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-            mediaPlayer.stop();
-        }
-        mediaPlayer.play();
-    }
-
-    private void playBossDamageSound() {
-        if (mediaPlayerBoss.getStatus() == MediaPlayer.Status.PLAYING) {
-            mediaPlayerBoss.stop();
-        }
-        mediaPlayerBoss.play();
-    }
-
-    private void playTp() {
-        if (!Win) {
-            if (mediaPlayerTp.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayerTp.stop();
-            }
-            mediaPlayerTp.play();
-        }
-    }
 
     private void changeImage() {
         if (!Win) {
@@ -395,46 +343,26 @@ public class Lvl1_Controller {
 
     private void barrierPosition(int num) {
         if (!Win) {
-        Media soundtp = new Media(getClass().getResource(barrier_teleport).toExternalForm());
-        mediaPlayerTp = new MediaPlayer(soundtp);
-        mediaPlayerTp.setVolume(0.1);
-
         switch (num) {
             case 1:
                 Platform.runLater(() -> {
                 barrier.setLayoutY(227);
-                playTp();
                 });
                 break;
             case 2:
                 Platform.runLater(() -> {
                     barrier.setLayoutY(130);
-                    playTp();
                 });
                 break;
             case 3:
                 Platform.runLater(() -> {
                     barrier.setLayoutY(25);
-                    playTp();
                 });
                 break;
         }
         }
     }
 
-    private void stopAllSounds() {
-        if (Win) {
-            if (mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayer.stop();
-            }
-            if (mediaPlayerBoss != null && mediaPlayerBoss.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayerBoss.stop();
-            }
-            if (mediaPlayerTp != null && mediaPlayerTp.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayerTp.stop();
-            }
-        }
-    }
     public void updateScoreLabel() {
         scoreLabel.setText(String.valueOf(bossHP));
     }

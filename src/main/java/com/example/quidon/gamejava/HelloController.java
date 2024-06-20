@@ -1,6 +1,5 @@
 package com.example.quidon.gamejava;
 
-import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Platform;
@@ -11,8 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class HelloController {
@@ -41,31 +38,10 @@ public class HelloController {
         }
     }
 
-    private MediaPlayer mediaPlayer;
 
 
     @FXML
     void initialize() {
-
-        String soundFile = "src/main/resources/com/example/quidon/gamejava/sound/buttonSFX.mp3";
-        Media sound = new Media(new File(soundFile).toURI().toString());
-        mediaPlayer = new MediaPlayer(sound);
-
-        button1.setOnMouseEntered(event -> playSound());
-        button2.setOnMouseEntered(event -> playSound());
-
-
-        mediaPlayer.setOnEndOfMedia(() -> {
-            mediaPlayer.stop();
-            mediaPlayer.seek(mediaPlayer.getStartTime());
-        });
-    }
-
-    private void playSound() {
-        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-            mediaPlayer.stop();
-        }
-        mediaPlayer.play();
     }
 }
 

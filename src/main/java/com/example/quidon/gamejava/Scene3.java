@@ -19,8 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -77,19 +75,6 @@ public class Scene3 {
     private boolean delay = false;
     private boolean lose = false;
     private boolean btnOn = false;
-
-
-    private MediaPlayer mediaPlayer;
-    private final String soundFile = "/com/example/quidon/gamejava/sound/level3.mp3";
-
-    private MediaPlayer lazerSFX;
-    private final String lazerSoundPath = "/com/example/quidon/gamejava/sound/lazerSFX.wav";
-
-    private MediaPlayer dieSFX;
-    private final String dieSoundPath = "/com/example/quidon/gamejava/sound/damage.mp3";
-
-    private MediaPlayer winSFX;
-    private final String winPath = "/com/example/quidon/gamejava/sound/winSoundEffect.mp3";
 
     private double sceneWidth = 600.0;
     private double sceneHeight = 400.0;
@@ -710,26 +695,6 @@ public class Scene3 {
         }
 
 
-        //              Media               //
-        Media sound = new Media(getClass().getResource(soundFile).toExternalForm());
-        mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.5);
-        playSound();
-
-
-        Media lazersfx = new Media(getClass().getResource(lazerSoundPath).toExternalForm());
-        lazerSFX = new MediaPlayer(lazersfx);
-        lazerSFX.setVolume(0.3);
-
-        Media dieSfx = new Media(getClass().getResource(dieSoundPath).toExternalForm());
-        dieSFX = new MediaPlayer(dieSfx);
-        dieSFX.setVolume(0.3);
-
-        Media winSfx = new Media(getClass().getResource(winPath).toExternalForm());
-        winSFX = new MediaPlayer(winSfx);
-        winSFX.setVolume(0.3);
-
-
         //          timers activation        //
         timer.start();
         camera_timer.start();
@@ -784,7 +749,6 @@ public class Scene3 {
                         lazer_red2.setLayoutY(character_lvl3.getLayoutY());
                         lazer_red2.setLayoutX(character_lvl3.getLayoutX() + 12);
 
-                        playLazerSFX();
                     }
                 }
             }
@@ -813,33 +777,6 @@ public class Scene3 {
 
 
     //          Methods         //
-    private void playSound() {
-        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-            mediaPlayer.stop();
-        }
-        mediaPlayer.play();
-    }
-
-    private void playLazerSFX() {
-        if (lazerSFX.getStatus() == MediaPlayer.Status.PLAYING) {
-            lazerSFX.stop();
-        }
-        lazerSFX.play();
-    }
-
-    private void playDieSFX() {
-        if (dieSFX.getStatus() == MediaPlayer.Status.PLAYING) {
-            dieSFX.stop();
-        }
-        dieSFX.play();
-    }
-
-    private void playWinSFX() {
-        if (winSFX.getStatus() == MediaPlayer.Status.PLAYING) {
-            winSFX.stop();
-        }
-        winSFX.play();
-    }
 
     private void Lose() {
         character_lvl3.setImage(new Image(getClass().getResourceAsStream("/com/example/quidon/gamejava/gif/boom.gif")));
@@ -849,9 +786,7 @@ public class Scene3 {
         enemies1_timer.stop();
         enemies2_timer.stop();
         lasers_timer.stop();
-        mediaPlayer.stop();
         pepe_timer.stop();
-        playDieSFX();
 
         Lose_Timer.start();
     }
@@ -864,7 +799,6 @@ public class Scene3 {
         enemies1_timer.stop();
         enemies2_timer.stop();
         lasers_timer.stop();
-        mediaPlayer.stop();
         pepe_timer.stop();
 
 
@@ -876,7 +810,6 @@ public class Scene3 {
         quit_game.setLayoutX(quit_game.getLayoutX() + 5);
 
         Win_Timer.start();
-        playWinSFX();
     }
 
     private void LazerStop(ImageView laser) {
@@ -947,7 +880,6 @@ public class Scene3 {
         enemies2_timer.start();
         pepe_timer.start();
         btnOn = false;
-        mediaPlayer.play();
 
         character_lvl3.requestFocus();
     }
